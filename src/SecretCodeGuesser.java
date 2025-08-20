@@ -1,32 +1,65 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class SecretCodeGuesser {
-    private static final char[] alphabet = {'B', 'A', 'C', 'X', 'I', 'U'};
-    public void start() {
-      // brute force secret code guessing
-      SecretCode code = new SecretCode();
-      int correctLength = -1; // track correct key length
-
-      // First, find correct length by brute-force
-      for (int length = 1; length <= 20; length++) {
-        String candidate = "B".repeat(length);
-        int result = code.guess(candidate);
-        if (result != -2) { // not a "wrong length" response
-          correctLength = length;
-          break;
-        }
-      }
-
-      if (correctLength == -1) {
-        System.out.println("Failed to determine secret code length.");
-        return;
-      }
-
-      // brute force key guessing
-      String str = "B".repeat(correctLength); // use discovered length
-      while (code.guess(str) != correctLength) {
-        str = next(str);
-      }
-      System.out.println("I found the secret code. It is " + str);
+    public static void main(String[] args) {
+        start();
     }
+    public static void start(){
+        SecretCode secret = new SecretCode();
+        long startTime = System.currentTimeMillis();
+        int totalGuess = 0; //lower the better
+
+        // Find the length
+        int length = 0;
+        int prevScore = 0;
+
+        while (true) {
+            length++;
+            char[] attempt = new char[length];
+            Arrays.fill(attempt, 'B');
+
+            int score = secret.guess(new String(attempt));
+            totalGuess++;
+
+            if (score == prevScore) {
+                length--;
+                break;
+            }
+            prevScore = score;
+
+            if (length >= 18) break; // safety cap
+        }
+
+        // Discover code
+        char[] found = new char[length];
+        Arrays.fill(found, 'B');
+        int currentScore = prevScore;
+
+        for (int i = 0; i < length; i++) {
+            for (int ord = 0; ord < 6; ord++) {
+                char c = charOf(ord);
+                found[i] = c;
+
+                int score = secret.guess(new String(found));
+                totalGuess++;
+
+                if (score > currentScore) {
+                    currentScore = score;
+                    break;
+                }
+            }
+        }
+        long endTime = System.currentTimeMillis();
+        String secretCode = new String(found);
+
+
+        System.out.println("Secret code found: " + secretCode);
+        System.out.println("Total guesses: " + totalGuess);
+        System.out.println("Time taken: " + (endTime - startTime) + " ms");
+
+    }
+
 
     static int order(char c) {
         if (c == 'B') {
@@ -59,18 +92,5 @@ public class SecretCodeGuesser {
     }
 
 
-    // return the next value in 'BACXIU' order, that is
-    // B < A < C < X < I < U
-    public String next(String current) {
-        char[] curr = current.toCharArray();
-        for (int i = curr.length - 1; i >= 0; i--) {
-            if (order(curr[i]) < 5) {
-                // increase this one and stop
-                curr[i] = charOf(order(curr[i]) + 1);
-                break;
-            }
-            curr[i] = 'B';
-        }
-        return String.valueOf(curr);
-    }
+
 }
