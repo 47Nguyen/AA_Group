@@ -11,69 +11,61 @@ public class SecretCodeGuesser {
         int totalGuess = 0; //lower the better
 
         // Find the length
-        int length = 0;
-        int prevScore = 0;
+        int length = -1;
 
-        while (true) {
-            length++;
-            char[] attempt = new char[length];
+        for (int len = 1; len <= 18; len++) {
+            char[] attempt = new char[len];
             Arrays.fill(attempt, 'B');
 
-            int score = secret.guess(new String(attempt));
+            int result = secret.guess(new String(attempt));
             totalGuess++;
 
-            if (score == prevScore) {
-                length--;
+            if (result != -2) { // not a "wrong length" response
+                length = len;
                 break;
             }
-            prevScore = score;
-
-            if (length >= 18) break; // safety cap
         }
 
+        if (length == -1) {
+            System.out.println("Failed to determine secret code length.");
+            return;
+        }
         // Discover code
         char[] found = new char[length];
-        Arrays.fill(found, 'B');
-        int currentScore = prevScore;
+        Arrays.fill(found, 'B'); // initial guess
+        int currentScore = secret.guess(new String(found));
+        totalGuess++;
 
         for (int i = 0; i < length; i++) {
             for (int ord = 0; ord < 6; ord++) {
-                char c = charOf(ord);
-                found[i] = c;
+                char originalChar = found[i]; // remember old char
+                char newChar = charOf(ord);
 
+                if (originalChar == newChar) continue; // skip duplicate trial
+
+                found[i] = newChar;
                 int score = secret.guess(new String(found));
                 totalGuess++;
 
                 if (score > currentScore) {
+                    // improvement → lock the new char
                     currentScore = score;
                     break;
+                } else {
+                    // no improvement → revert
+                    found[i] = originalChar;
                 }
             }
         }
+
+        // Show results
         long endTime = System.currentTimeMillis();
         String secretCode = new String(found);
-
 
         System.out.println("Secret code found: " + secretCode);
         System.out.println("Total guesses: " + totalGuess);
         System.out.println("Time taken: " + (endTime - startTime) + " ms");
 
-    }
-
-
-    static int order(char c) {
-        if (c == 'B') {
-            return 0;
-        } else if (c == 'A') {
-            return 1;
-        } else if (c == 'C') {
-            return 2;
-        } else if (c == 'X') {
-            return 3;
-        } else if (c == 'I') {
-            return 4;
-        }
-        return 5;
     }
 
     static char charOf(int order) {
