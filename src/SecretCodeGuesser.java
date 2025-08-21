@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class SecretCodeGuesser {
@@ -9,7 +8,7 @@ public class SecretCodeGuesser {
         SecretCode secret = new SecretCode();
         double startTime = System.currentTimeMillis();
 
-        // Discover the length of the secret code
+        // Discover the length of the secret code - Time Complexity O(n^2)
         int length = -1;
         char[] found = null;
         int currentScore = -1;
@@ -17,7 +16,6 @@ public class SecretCodeGuesser {
         for (int len = 1; len <= 18; len++) { //Upper limit is 18
             char[] attempt = new char[len];
             Arrays.fill(attempt, 'B');
-
             int result = secret.guess(new String(attempt));
 
             if (result != -2) { // Found the len of the code
@@ -33,7 +31,7 @@ public class SecretCodeGuesser {
             return;
         }
 
-        // Discover code (optimize characters)
+        // Search for secret code O(n).
         for (int i = 0; i < length; i++) { // Loop through i position of secret code
             for (int ord = 0; ord < 6; ord++) { //Try all the char set we know B,A,C,X,I,U
                 char originalChar = found[i]; // remember old char
@@ -55,7 +53,6 @@ public class SecretCodeGuesser {
         // Print output
         double endTime = System.currentTimeMillis();
         String secretCode = new String(found); //Get the secret code
-
         System.out.println("Start time: " + startTime +" ms");
         System.out.println("Secret code found: " + secretCode);
         System.out.println("End time: " + startTime + " ms");
