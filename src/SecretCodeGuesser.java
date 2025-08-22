@@ -11,7 +11,7 @@ public class SecretCodeGuesser {
         char[] found = null;
         int currentScore = -1;
 
-        for (int len = 1; len <= 18; len++) { //Upper limit is 18
+        for (int len = 1; len <= 100; len++) { //Upper limit is 18
             char[] attempt = new char[len];
             Arrays.fill(attempt, 'B');
             int result = secret.guess(new String(attempt));
@@ -109,21 +109,6 @@ public class SecretCodeGuesser {
             int tmp = idx[i]; idx[i] = idx[best]; idx[best] = tmp;
         }
         return idx;
-    }
-
-    static char charOf(int order) {
-        if (order == 0) {
-            return 'B';
-        } else if (order == 1) {
-            return 'A';
-        } else if (order == 2) {
-            return 'C';
-        } else if (order == 3) {
-            return 'X';
-        } else if (order == 4) {
-            return 'I';
-        }
-        return 'U';
     }
 
 }

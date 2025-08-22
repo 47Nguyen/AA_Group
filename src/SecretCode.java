@@ -12,14 +12,23 @@ public class SecretCode {
 
 	public static void main(String[] args) {
 		long t1 = System.currentTimeMillis();
-		for(int i = 0; i < 10_000_000;i++){
+		for(int i = 0; i < 20_000_000;i++){
 			SecretCodeGuesser.start();
 		}
+		// Length = 18
+		// n 20,000,000 = 24,698
 		// n 10,000,000 = 11,922 ms
 		// n = 5,000,000 , time = 6528 ms
 		// n = 500,000, times = 765 ms
 		// n = 5,000, time = 37 ms
 
+
+		// Length = 100
+		// n 20,000,000 = 24,803
+		// n 10,000,000 = 11,962 ms
+		// n = 5,000,000 , time = 5878 ms
+		// n = 500,000, times = 771 ms
+		// n = 5,000, time = 40 ms
 		long t2 = System.currentTimeMillis();
 		System.out.println("Time taken: " + (t2 - t1) + " ms");
 	}
