@@ -2,13 +2,15 @@ import java.util.Arrays;
 
 public class SecretCodeGuesser {
     public static void main(String[] args) {
-        start();
+        for (int i = 0; i < 10;i++){
+            start();
+        }
     }
     public static void start() {
         SecretCode secret = new SecretCode();
         double startTime = System.currentTimeMillis();
 
-        // Discover the length of the secret code - Time Complexity O(n^2)
+        //1.  Discover the length of the secret code - Time Complexity O(n^2)
         int length = -1;
         char[] found = null;
         int currentScore = -1;
@@ -31,32 +33,9 @@ public class SecretCodeGuesser {
             return;
         }
 
-        // Search for secret code O(n).
-        for (int i = 0; i < length; i++) { // Loop through i position of secret code
-            for (int ord = 0; ord < 6; ord++) { //Try all the char set we know B,A,C,X,I,U
-                char originalChar = found[i]; // remember old char
-                char newChar = charOf(ord); // Pick char from the charOf functions
+        //2. Determine the secret code
+        // Letter count
 
-                if (originalChar == newChar) continue; // Skip if the char is the same
-                found[i] = newChar; // Update the char at position i
-                int score = secret.guess(new String(found)); // Check with the secret code
-
-                if (score > currentScore) { // If score is greater than current score
-                    currentScore = score; //Keep current score and move to next position [i+1]
-                    break;
-                } else {
-                    found[i] = originalChar; // If score is lower, go back to original char
-                }
-            }
-        }
-
-        // Print output
-        double endTime = System.currentTimeMillis();
-        String secretCode = new String(found); //Get the secret code
-        System.out.println("Start time: " + startTime +" ms");
-        System.out.println("Secret code found: " + secretCode);
-        System.out.println("End time: " + startTime + " ms");
-        System.out.println("Algorithm Total time: " + (endTime - startTime) + " ms");
     }
 
 
