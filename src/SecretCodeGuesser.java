@@ -1,18 +1,7 @@
 import java.util.Arrays;
 
 public class SecretCodeGuesser {
-    public static void main(String[] args) {
-        int repetitions = 1000000;
-        long totalTime = 0;
-
-        for (int i = 0; i < repetitions; i++) {
-            totalTime += start();
-        }
-
-        double avgTimeMs = (totalTime / (double) repetitions);
-        System.out.printf("Average time over %d runs: %.4f ns%n", repetitions, avgTimeMs);
-    }
-    public static long start() {
+    public static void start() {
         SecretCode secret = new SecretCode();
         long startTime = System.nanoTime();
 
@@ -36,7 +25,7 @@ public class SecretCodeGuesser {
 
         if (length == -1) {
             System.out.println("Length invalid.");
-            return 0;
+            return;
         }
 
         // Search for secret code O(n).
@@ -58,13 +47,6 @@ public class SecretCodeGuesser {
             }
         }
 
-        // Print output
-        long endTime = System.nanoTime();
-        return endTime - startTime;
-//        String secretCode = new String(found); //Get the secret code
-//        System.out.println("Start time: " + startTime +" ms");
-//        System.out.println("Secret code found: " + secretCode);
-//        System.out.println("End time: " + startTime + " ms");
     }
 
 
