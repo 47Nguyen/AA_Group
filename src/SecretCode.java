@@ -5,14 +5,17 @@ public class SecretCode {
 	public SecretCode() {
 		// for the real test, your program will not know this
 //    correctCode = "B"; // Best Case
-//    correctCode = "BACXIUBACXIUBA"; // Average Case
-		correctCode = "UUUUUUUUUUUUUUUUUU"; // Worse Case
+    correctCode = "BACXIUBACXIUBA"; // Average Case
+//		correctCode = "UUUUUUUUUUUUUUUUUU"; // Worse Case
 		counter = 0;
 	}
 
 	public static void main(String[] args) {
 		long t1 = System.currentTimeMillis();
-		SecretCodeGuesser.start();
+		for(int i = 0; i < 5_000_000;i++){
+			SecretCodeGuesser.start();
+		}
+
 		long t2 = System.currentTimeMillis();
 		System.out.println("Time taken: " + (t2 - t1) + " ms");
 	}
@@ -42,9 +45,9 @@ public class SecretCode {
 			}
 		}
 
-		if (matched == correctCode.length()) {
-			System.out.println("Number of guesses: " + counter);
-		}
+//		if (matched == correctCode.length()) {
+//			System.out.println("Number of guesses: " + counter);
+//		}
 		return matched;
 	}
 }
