@@ -5,16 +5,17 @@ public class SecretCode {
 	public SecretCode() {
 		// for the real test, your program will not know this
 //    correctCode = "B"; // Best Case
-    correctCode = "BACXIUBACXIUBA"; // Average Case
+		correctCode = "BACXIUBACXIUBA"; // Average Case
 //		correctCode = "UUUUUUUUUUUUUUUUUU"; // Worse Case
 		counter = 0;
 	}
 
 	public static void main(String[] args) {
 		long t1 = System.currentTimeMillis();
-		for(int i = 0; i < 500_000;i++){
+		for(int i = 0; i < 10_000_000;i++){
 			SecretCodeGuesser.start();
 		}
+		// n 10,000,000 = 11,922 ms
 		// n = 5,000,000 , time = 6528 ms
 		// n = 500,000, times = 765 ms
 		// n = 5,000, time = 37 ms
