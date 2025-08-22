@@ -5,8 +5,8 @@ public class SecretCode {
 	public SecretCode() {
 		// for the real test, your program will not know this
 //    correctCode = "B"; // Best Case
-//    correctCode = "BACXIUBACXIUBA"; // Average Case
-		correctCode = "UUUUUUUUUUUUUUUUUU"; // Worse Case
+    correctCode = "BACXIUBACXIUBA"; // Average Case
+//		correctCode = "UUUUUUUUUUUUUUUUUU"; // Worse Case
 		counter = 0;
 	}
 
@@ -42,9 +42,9 @@ public class SecretCode {
 			}
 		}
 
-		if (matched == correctCode.length()) {
-			System.out.println("Number of guesses: " + counter);
-		}
+//		if (matched == correctCode.length()) {
+//			System.out.println("Number of guesses: " + counter);
+//		}
 		return matched;
 	}
 }

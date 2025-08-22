@@ -2,11 +2,19 @@ import java.util.Arrays;
 
 public class SecretCodeGuesser {
     public static void main(String[] args) {
-        start();
+        int repetitions = 1000000;
+        long totalTime = 0;
+
+        for (int i = 0; i < repetitions; i++) {
+            totalTime += start();
+        }
+
+        double avgTimeMs = (totalTime / (double) repetitions);
+        System.out.printf("Average time over %d runs: %.4f ns%n", repetitions, avgTimeMs);
     }
-    public static void start() {
+    public static long start() {
         SecretCode secret = new SecretCode();
-        double startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
 
         // Discover the length of the secret code - Time Complexity O(n^2)
         int length = -1;
@@ -28,7 +36,7 @@ public class SecretCodeGuesser {
 
         if (length == -1) {
             System.out.println("Length invalid.");
-            return;
+            return 0;
         }
 
         // Search for secret code O(n).
@@ -51,12 +59,12 @@ public class SecretCodeGuesser {
         }
 
         // Print output
-        double endTime = System.currentTimeMillis();
-        String secretCode = new String(found); //Get the secret code
-        System.out.println("Start time: " + startTime +" ms");
-        System.out.println("Secret code found: " + secretCode);
-        System.out.println("End time: " + startTime + " ms");
-        System.out.println("Algorithm Total time: " + (endTime - startTime) + " ms");
+        long endTime = System.nanoTime();
+        return endTime - startTime;
+//        String secretCode = new String(found); //Get the secret code
+//        System.out.println("Start time: " + startTime +" ms");
+//        System.out.println("Secret code found: " + secretCode);
+//        System.out.println("End time: " + startTime + " ms");
     }
 
 
