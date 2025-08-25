@@ -15,8 +15,17 @@ public class SecretCode {
 		for (int i = 0; i < 20_000_000;i++){
 			SecretCodeGuesser.start();
 		}
+		//Length = 18
 		// n = 10,000,000 time = 11,249ms
 		// n = 20,000,000 time = 21,773ms
+
+		// Length = 100
+		// n 20,000,000 = 22,353 ms
+		// n 10,000,000 = 11,026 ms
+		// n = 5,000,000 , time = 5643 ms
+		// n = 500,000, times = 676 ms
+		// n = 5,000, time = 35 ms
+
 		long t2 = System.currentTimeMillis();
 		System.out.println("Time taken: " + (t2 - t1) + " ms");
 	}
