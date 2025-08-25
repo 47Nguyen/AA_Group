@@ -3,7 +3,6 @@ import java.util.Arrays;
 public class SecretCodeGuesser {
     public static void start() {
         SecretCode secret = new SecretCode();
-        long startTime = System.nanoTime();
 
         // Discover the length of the secret code - Time Complexity O(n^2)
         int length = -1;
