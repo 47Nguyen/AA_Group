@@ -5,12 +5,12 @@ public class SecretCodeGuesser {
         SecretCode secret = new SecretCode();
         long startTime = System.nanoTime();
 
-        // Discover the length of the secret code - Time Complexity O(n^2)
+        // Discover the length of the secret code - Time Complexity O(n)
         int length = -1;
         char[] found = null;
         int currentScore = -1;
 
-        for (int len = 1; len <= 100; len++) { //Upper limit is 18
+        for (int len = 1; len <= 18; len++) { //Upper limit is 18
             char[] attempt = new char[len];
             Arrays.fill(attempt, 'B');
             int result = secret.guess(new String(attempt));
