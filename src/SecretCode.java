@@ -4,15 +4,17 @@ public class SecretCode {
 
 	public SecretCode() {
 		// for the real test, your program will not know this
-//    correctCode = "B"; // Best Case
-    correctCode = "BACXIUBACXIUBA"; // Average Case
+//    correctCode = "A"; // Best Case
+//    correctCode = "BACXIUBACXIUBA"; // Average Case
 //		correctCode = "UUUUUUUUUUUUUUUUUU"; // Worse Case
+//		correctCode = "BACXIUBACXIUBAUUUU"; // Worse Case
+		correctCode = "BACXIUBACXIUBABACX"; // Worse Case
 		counter = 0;
 	}
 
 	public static void main(String[] args) {
 		long t1 = System.currentTimeMillis();
-		for (int i = 0; i < 1000;i++){
+		for (int i = 0; i < 1_000_000;i++){
 			SecretCodeGuesser2.start();
 		}
 

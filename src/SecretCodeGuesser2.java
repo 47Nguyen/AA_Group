@@ -5,7 +5,7 @@ public class SecretCodeGuesser2 {
 	public static void start() {
 		SecretCode secret = new SecretCode();
 
-		// Discover the length of the secret code - Time Complexity O(n^2)
+		// Discover the length of the secret code - Time Complexity O(n)
 		int length = -1;
 		char[] found = null;
 		int currentScore = -1;

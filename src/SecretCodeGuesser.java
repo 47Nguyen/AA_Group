@@ -46,13 +46,6 @@ public class SecretCodeGuesser {
                 }
             }
         }
-//        long endTime = System.nanoTime(); // End timer
-//
-//        long durationNs = endTime - startTime;
-//        double durationMs = durationNs / 1_000_000.0;
-//
-//        System.out.println("Time taken (high precision): " + durationNs + " ns (" + String.format("%.4f", durationMs) + " ms)");
-
 
 
     }
