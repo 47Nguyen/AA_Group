@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class SecretCodeGuesser {
     public static void start() {
         SecretCode secret = new SecretCode();
-        long startTime = System.nanoTime();
+//        long startTime = System.nanoTime();
 
         // Discover the length of the secret code - Time Complexity O(n)
         int length = -1;
@@ -46,6 +46,14 @@ public class SecretCodeGuesser {
                 }
             }
         }
+//        long endTime = System.nanoTime(); // End timer
+//
+//        long durationNs = endTime - startTime;
+//        double durationMs = durationNs / 1_000_000.0;
+//
+//        System.out.println("Time taken (high precision): " + durationNs + " ns (" + String.format("%.4f", durationMs) + " ms)");
+
+
 
     }
 

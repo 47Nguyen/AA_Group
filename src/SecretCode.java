@@ -12,9 +12,11 @@ public class SecretCode {
 
 	public static void main(String[] args) {
 		long t1 = System.currentTimeMillis();
-		for (int i = 0; i < 20_000_000;i++){
-			SecretCodeGuesser.start();
+		for (int i = 0; i < 1000;i++){
+			SecretCodeGuesser2.start();
 		}
+
+
 		//Length = 18
 		// n = 10,000,000 time = 11,249ms
 		// n = 20,000,000 time = 21,773ms
@@ -55,9 +57,9 @@ public class SecretCode {
 			}
 		}
 
-//		if (matched == correctCode.length()) {
-//			System.out.println("Number of guesses: " + counter);
-//		}
+		if (matched == correctCode.length()) {
+			System.out.println("Number of guesses: " + counter);
+		}
 		return matched;
 	}
 }
