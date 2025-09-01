@@ -4,7 +4,7 @@ public class SecretCodeGuesser {
     public static void start() {
         SecretCode secret = new SecretCode();
 
-        // Discover the length of the secret code - Time Complexity O(n^2)
+        // P1. Discover the length of the secret code - Time Complexity O(n^2)
         int length = -1;
         char[] found = null;
         int currentScore = -1;
@@ -27,7 +27,7 @@ public class SecretCodeGuesser {
             return;
         }
 
-        // Search for secret code O(n).
+        // P2.  Search for secret code O(n).
         for (int i = 0; i < length; i++) { // Loop through i position of secret code
             for (int ord = 0; ord < 6; ord++) { //Try all the char set we know B,A,C,X,I,U
                 char originalChar = found[i]; // remember old char
