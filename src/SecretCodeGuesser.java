@@ -3,9 +3,8 @@ import java.util.Arrays;
 public class SecretCodeGuesser {
     public static void start() {
         SecretCode secret = new SecretCode();
-//        long startTime = System.nanoTime();
 
-        // Discover the length of the secret code - Time Complexity O(n)
+        // Discover the length of the secret code - Time Complexity O(1)
         int length = -1;
         char[] found = null;
         int currentScore = -1;
@@ -46,7 +45,6 @@ public class SecretCodeGuesser {
                 }
             }
         }
-
 
     }
 
